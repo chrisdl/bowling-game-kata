@@ -1,5 +1,6 @@
 import unittest
 from bowling_game import Game
+import random
 
 
 class BowlingGameTest(unittest.TestCase):
@@ -11,8 +12,9 @@ class BowlingGameTest(unittest.TestCase):
             self.game.roll(pins)
 
     def roll_spare(self):
-        self.game.roll(2)
-        self.game.roll(8)
+        first_roll = random.randint(0, 9)
+        self.game.roll(first_roll)
+        self.game.roll(10 - first_roll)
 
     def roll_strike(self):
         self.game.roll(10)
