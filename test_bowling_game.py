@@ -45,5 +45,17 @@ class BowlingGameTest(unittest.TestCase):
         self.roll_many(rolls=12, pins=10)
         self.assertEqual(self.game.score(), 300)
 
+    def test_frame_done(self):
+        self.game.current_frame = [0, 0]
+        self.assertTrue(self.game._frame_done())
+        self.game.current_frame = [0, 10]
+        self.assertTrue(self.game._frame_done())
+        self.game.current_frame = [0]
+        self.assertFalse(self.game._frame_done())
+        self.game.current_frame = [1, 2]
+        self.assertTrue(self.game._frame_done())
+        self.game.current_frame = [10]
+        self.assertTrue(self.game._frame_done())
+
 if __name__ == '__main__':
     unittest.main()
